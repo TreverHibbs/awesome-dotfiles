@@ -24,6 +24,27 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- ============================================================================
 -- {{{ Key bindings
+-- Table of layouts to cover with awful.layout.inc, order matters.
+awful.layout.layouts = {
+  awful.layout.suit.floating,
+  awful.layout.suit.tile,
+  awful.layout.suit.tile.left,
+  -- awful.layout.suit.tile.bottom,
+  -- awful.layout.suit.tile.top,
+  -- awful.layout.suit.fair,
+  -- awful.layout.suit.fair.horizontal,
+  -- awful.layout.suit.spiral,
+  -- awful.layout.suit.spiral.dwindle,
+  awful.layout.suit.max,
+  -- awful.layout.suit.max.fullscreen,
+  -- awful.layout.suit.magnifier,
+  -- awful.layout.suit.corner.nw,
+  -- awful.layout.suit.corner.ne,
+  -- awful.layout.suit.corner.sw,
+  -- awful.layout.suit.corner.se,
+}
+-- ============================================================================
+-- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
@@ -119,7 +140,7 @@ globalkeys = gears.table.join(
     -- Prompt
     awful.key({ modkey },            "d",     function () 
     awful.util.spawn("rofi -show run") end,
-                    {description = "run the dmenu prompt", group = "awsome"}),
+                    {description = "run the dmenu prompt", group = "awesome"}),
 
     awful.key({ modkey }, "x",
               function ()

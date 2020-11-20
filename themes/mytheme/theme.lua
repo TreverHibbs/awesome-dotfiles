@@ -1,39 +1,45 @@
----------------------------
--- Default awesome theme --
----------------------------
-
+--[[
+ ___________ __    __   _______ ___      ___  _______  
+("     _   ")" |  | "\ /"     "|"  \    /"  |/"     "| 
+ )__/  \\__(:  (__)  :|: ______)\   \  //   (: ______) 
+    \\_ /   \/      \/ \/    |  /\\  \/.    |\/    |   
+    |.  |   //  __  \\ // ___)_|: \.        |// ___)_  
+    \:  |  (:  (  )  :|:      "|.  \    /:  (:      "| 
+     \__|   \__|  |__/ \_______)___|\__/|___|\_______) 
+                                                       
+--]]
+-- ============================================================================
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-
+local gears = require("gears")
+local awful = require("awful")
+-- ============================================================================
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
-
+-- ============================================================================
 local theme = {}
-
 local colors = xresources.get_current_theme();
-
+-- ============================================================================
 theme.font          = "Hack 12"
 
 theme.bg_normal     = colors["background"]
-theme.bg_focus      = colors["color6"]
-theme.bg_urgent     = colors["color4"]
+theme.bg_focus      = colors["background"]
+theme.bg_urgent     = colors["background"]
 theme.bg_minimize   = "#0a1313"
-theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = colors["foreground"]
-theme.fg_focus      = colors["color0"]
-theme.fg_urgent     = colors["foreground"]
-theme.fg_minimize   = colors["foreground"]
+theme.fg_focus      = colors["color6"]
+theme.fg_urgent     = colors["color4"]
+theme.fg_minimize   = colors["color11"]
 
 theme.useless_gap   = dpi(15)
 theme.border_width  = dpi(1)
 theme.border_normal = theme.bg_normal
 theme.border_focus  = colors["color4"]
 theme.border_marked = colors["color6"]
-
-
----[[ tasklist theme
+-- ============================================================================
+-- tasklist theme
 theme.tasklist_bg_normal = colors["background"] 
 
 theme.tasklist_fg_normal = colors["foreground"] 
@@ -41,7 +47,46 @@ theme.tasklist_fg_focus = colors["color0"]
 
 theme.tasklist_border_color = colors["color0"]
 theme.tasklist_border_color_focus = colors["color0"]
---]]
+
+theme.tasklist_align = "center"
+theme.tasklist_shape = gears.shape.rounded_bar
+-- ============================================================================
+-- Minimal Tasklist theme
+theme.minimal_tasklist_visible_clients_color = colors["color4"]
+theme.minimal_tasklist_hidden_clients_color = colors["color6"]
+-- ============================================================================
+-- systray theme
+theme.bg_systray    = theme.bg_normal
+theme.systray_icon_spacing = dpi(10)
+-- ============================================================================
+-- if(awful.tag.master_width_factor and theme.useless_gap) then
+--     theme.wibar_width = awful.tag.master_width_factor - theme.useless_gap
+-- else
+--     theme.wibar_width = dpi(1847)
+-- end
+-- ============================================================================
+-- wibar theme
+theme.wibar_width = dpi(1850)
+-- theme.wibar_width = awful.tag.master_width_factor - theme.useless_gap
+theme.wibar_bg = colors["background"]
+theme.wibar_fg = colors["foreground"]
+theme.wibar_border_color = colors["background"]
+theme.wibar_border_width = dpi(5)
+theme.wibar_shape = gears.shape.rounded_rect
+theme.wibar_position = "top"
+theme.wibar_max_name_len = 30
+-- ============================================================================
+-- taglist theme
+theme.taglist_fg_focus  = colors["color4"]
+theme.taglist_fg_empty = "#44744f"
+theme.taglist_fg_occupied = "#44744f"
+theme.taglist_fg_urgent = colors["color6"]
+-- ============================================================================
+-- keybind theme
+theme.hotkeys_modifiers_fg = colors["color6"]
+theme.hotkeys_border_color = colors["color4"]
+theme.hotkeys_shape = gears.shape.rounded_rect
+-- ============================================================================
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
@@ -53,7 +98,7 @@ theme.tasklist_border_color_focus = colors["color0"]
 -- prompt_[fg|bg|fg_cursor|bg_cursor|font]
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
---theme.taglist_bg_focus = "#ff0000"
+-- theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
@@ -129,8 +174,14 @@ theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 
+-- ============================================================================
 -- Rounded corners
-theme.border_radius = dpi(6)
+theme.border_radius = dpi(5)
+-- enable rounded borders
+client.connect_signal("manage", function (c)
+    c.shape = gears.shape.rounded_rect
+end)
+-- ============================================================================
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
@@ -139,7 +190,9 @@ theme.awesome_icon = theme_assets.awesome_icon(
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+chosen_icon_theme = "Reversal-green-dark"
+theme.icon_theme = string.format("%s/.local/share/icons/%s", os.getenv("HOME"), chosen_icon_theme)
+-- gears.debug.dump(theme.icon_theme)
 
 return theme
 

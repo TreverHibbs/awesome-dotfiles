@@ -6,17 +6,20 @@
  \//  /\'    ||.  | (|  _  \\ //  __'  \  //      /  
  /   /  \\   |/\  |\|: |_)  :)   /  \\  \|:  __   \  
 |___/    \___(__\_|_|_______(___/    \___)__|  \___) 
+
 --]]
+
 local beautiful = require("beautiful")
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
-
-
-
+local minimal_tasklist = require("deco.minimal-tasklist")
+local current_client = require("deco.current-client")
+local volume_bar = require("deco.volume_bar")
 -- ============================================================================
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
+mytextclock.format = "%_I:%M%P"
 -- ============================================================================
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -121,20 +124,17 @@ awful.screen.connect_for_each_screen(function(s)
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
-        style   = {
-            shape  = gears.shape.rounded_bar,
-            align  = "center",
-        }
     }
 -- ============================================================================
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top",
+    s.mywibox = awful.wibar({ position = beautiful.wibar_position,
                             screen = s,
-                            width = 1856,
-                            bg = colors["background"],
-                            fg = colors["foreground"],
-                            border_color = colors["background"],
-                            shape = gears.shape.rounded_rect,
+                            width = beautiful.wibar_width,
+                            border_width = beautiful.wibar_border_width,
+                            bg = beautiful.wibar_bg,
+                            fg = beautiful.wibar_fg,
+                            border_color = beautiful.wibar_border_color,
+                            shape = beautiful.wibar_shape,
                            })
 -- ============================================================================
     s.mywibox:setup {
@@ -147,19 +147,22 @@ awful.screen.connect_for_each_screen(function(s)
             spacing = dpi(12),
             layout = wibox.layout.fixed.horizontal
         },
-        s.mytasklist, 
+        current_client,
         {
-            wibox.widget.systray(),
+            minimal_tasklist,
+            -- wibox.widget.systray(),
+            -- volume_bar,
             mytextclock,
             s.mylayoutbox,
+            spacing = dpi(12),
             layout = wibox.layout.fixed.horizontal
         },
         expand = "none",
         layout = wibox.layout.align.horizontal
     }
     
-    awful.placement.top(s.mywibox, { margins = dpi(15) })
-    --s.padding = { top = s.padding.top + beautiful.useless_gap}
+    awful.placement.top(s.mywibox, { margins = beautiful.useless_gap*2 })
+    s.padding = { top = s.padding.top + beautiful.useless_gap*2}
 end)
 --]]
 -- ============================================================================

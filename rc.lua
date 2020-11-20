@@ -67,10 +67,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 --]]
 require("deco.statusbar")
 -- ============================================================================
----[[ Startup apps
-awful.spawn.single_instance("picom")
-awful.spawn.single_instance("spotify")
--- ============================================================================
 -- set possition of monitors
 awful.spawn("xrandr --output DP-1 --auto --right-of HDMI-1")
 -- ============================================================================
@@ -79,7 +75,11 @@ require("bindings.global")
 require("bindings.client-keys")
 -- ============================================================================
 require("main.client")
-
+-- ============================================================================
+---[[ Startup apps
+awful.spawn.single_instance("picom")
+-- awful.spawn.single_instance("spotify")
+-- ============================================================================
 --[[
   _______ _____  ___  ________   
  /"     "(\"   \|"  \|"      "\  
