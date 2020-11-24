@@ -151,7 +151,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
             minimal_tasklist,
             -- wibox.widget.systray(),
-            -- volume_bar,
+            volume_bar,
             mytextclock,
             s.mylayoutbox,
             spacing = dpi(12),

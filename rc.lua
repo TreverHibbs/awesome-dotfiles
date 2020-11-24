@@ -30,6 +30,9 @@ require("awful.hotkeys_popup.keys")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 -- ===================================================================
+-- global declaration for helper functions
+helpers = require("helpers")
+-- ===================================================================
 ---[[ Error handling
 require("main.error-handling")
 --]]

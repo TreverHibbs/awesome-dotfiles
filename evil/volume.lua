@@ -2,6 +2,7 @@
 -- evil::volume
 --      percentage (integer)
 --      muted (boolean)
+local gears = require("gears")
 local awful = require("awful")
 
 local volume_old = -1
@@ -14,6 +15,8 @@ local function emit_volume_info()
     -- This is why we are using `awk` to print them.
     awful.spawn.easy_async_with_shell("pacmd list-sinks | awk '/\\* index: /{nr[NR+7];nr[NR+11]}; NR in nr'", function(stdout)
         local volume = stdout:match('(%d+)%% /')
+        gears.debug.dump("volume")
+        gears.debug.dump(volume)
         local muted = stdout:match('muted:(%s+)[yes]')
         local muted_int = muted and 1 or 0
         local volume_int = tonumber(volume)

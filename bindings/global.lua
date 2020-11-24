@@ -21,7 +21,6 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 
-
 -- ============================================================================
 -- {{{ Key bindings
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -91,8 +90,8 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 -- ============================================================================
     -- Multimedia keys
-    awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%+") end),
-    awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%-") end),
+    awful.key({}, "XF86AudioRaiseVolume", function () helpers.volume_control(5) end),
+    awful.key({}, "XF86AudioLowerVolume", function () helpers.volume_control(-5) end),
     awful.key({}, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
     awful.key({}, "XF86AudioPlay", function () awful.util.spawn("playerctl play-pause") end),
     awful.key({}, "XF86AudioNext", function () awful.util.spawn("playerctl next") end),
