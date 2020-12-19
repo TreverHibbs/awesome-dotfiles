@@ -13,8 +13,8 @@ local volume_bar = wibox.widget{
     value         = 50,
     forced_height = dpi(10),
     margins       = {
-        top = dpi(8),
-        bottom = dpi(8),
+        top = dpi(10),
+        bottom = dpi(10),
     },
     forced_width  = dpi(200),
     shape         = gears.shape.rounded_bar,

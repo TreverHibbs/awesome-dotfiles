@@ -66,7 +66,7 @@ theme.systray_icon_spacing = dpi(10)
 -- end
 -- ============================================================================
 -- wibar theme
-theme.wibar_width = dpi(1850)
+theme.wibar_width = dpi(1859)
 -- theme.wibar_width = awful.tag.master_width_factor - theme.useless_gap
 theme.wibar_bg = colors["background"]
 theme.wibar_fg = colors["foreground"]

@@ -17,6 +17,9 @@ local minimal_tasklist = require("deco.minimal-tasklist")
 local current_client = require("deco.current-client")
 local volume_bar = require("deco.volume_bar")
 -- ============================================================================
+-- Create padding
+pad = wibox.widget.textbox(" ")
+-- ============================================================================
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 mytextclock.format = "%_I:%M%P"
@@ -102,6 +105,10 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
+    s.mylayoutbox.margins = {
+        top = dpi(10),
+        bottom = dpi(10),
+    }
     s.mylayoutbox:buttons(gears.table.join(
                            awful.button({ }, 1, function () awful.layout.inc( 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
@@ -127,12 +134,15 @@ awful.screen.connect_for_each_screen(function(s)
     }
 -- ============================================================================
     -- Create the wibox
-    s.mywibox = wibox({ 
+    s.mywibox = awful.wibar({ 
                        visible = true,
                        ontop = true,
                        type = "normal",
-                       height = 33,
+                       height = 35,
                        width = beautiful.wibar_width,
+                       screen = s,
+                       border_color = "#00000000",
+                       border_width = 0,
                       })
 
     s.mywibox.bg = "#00000000"
@@ -156,6 +166,7 @@ awful.screen.connect_for_each_screen(function(s)
                 volume_bar,
                 mytextclock,
                 s.mylayoutbox,
+                pad,
                 spacing = dpi(12),
                 layout = wibox.layout.fixed.horizontal
             },
