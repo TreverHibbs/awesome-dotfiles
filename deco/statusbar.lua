@@ -127,38 +127,44 @@ awful.screen.connect_for_each_screen(function(s)
     }
 -- ============================================================================
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = beautiful.wibar_position,
-                            screen = s,
-                            width = beautiful.wibar_width,
-                            border_width = beautiful.wibar_border_width,
-                            bg = beautiful.wibar_bg,
-                            fg = beautiful.wibar_fg,
-                            border_color = beautiful.wibar_border_color,
-                            shape = beautiful.wibar_shape,
-                           })
+    s.mywibox = wibox({ 
+                       visible = true,
+                       ontop = true,
+                       type = "normal",
+                       height = 33,
+                       width = beautiful.wibar_width,
+                      })
+
+    s.mywibox.bg = "#00000000"
 -- ============================================================================
     s.mywibox:setup {
+        -- Container
         {
-            { -- Some padding
+            {
+                { -- Some padding
+                    layout = wibox.layout.fixed.horizontal
+                },
+                mylauncher,
+                s.mytaglist,
+                spacing = dpi(12),
                 layout = wibox.layout.fixed.horizontal
             },
-            mylauncher,
-            s.mytaglist,
-            spacing = dpi(12),
-            layout = wibox.layout.fixed.horizontal
+            current_client,
+            {
+                minimal_tasklist,
+                -- wibox.widget.systray(),
+                volume_bar,
+                mytextclock,
+                s.mylayoutbox,
+                spacing = dpi(12),
+                layout = wibox.layout.fixed.horizontal
+            },
+            expand = "none",
+            layout = wibox.layout.align.horizontal
         },
-        current_client,
-        {
-            minimal_tasklist,
-            -- wibox.widget.systray(),
-            volume_bar,
-            mytextclock,
-            s.mylayoutbox,
-            spacing = dpi(12),
-            layout = wibox.layout.fixed.horizontal
-        },
-        expand = "none",
-        layout = wibox.layout.align.horizontal
+        bg = beautiful.wibar_bg,
+        shape = gears.shape.rounded_rect,
+        widget = wibox.container.background()
     }
     
     awful.placement.top(s.mywibox, { margins = beautiful.useless_gap*2 })
