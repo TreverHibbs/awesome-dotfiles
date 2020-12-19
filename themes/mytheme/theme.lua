@@ -178,9 +178,9 @@ theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 -- Rounded corners
 theme.border_radius = dpi(5)
 -- enable rounded borders
-client.connect_signal("manage", function (c)
-    c.shape = gears.shape.rounded_rect
-end)
+-- client.connect_signal("manage", function (c)
+--     c.shape = gears.shape.rounded_rect
+-- end)
 -- ============================================================================
 
 -- Generate Awesome icon:
