@@ -151,7 +151,13 @@ require("bindings.client-keys")
 require("main.client")
 -- ============================================================================
 ---[[ Startup apps
-awful.spawn.single_instance("picom")
+awful.spawn.with_shell("sh -c 'pgrep picom > /dev/null && pkill picom || picom --experimental-backends --config ~/.config/picom/picom.conf &'")
+awful.spawn("spotify", {
+    new_tag = {
+        name = "music",
+        layout = awful.layout.suit.max,
+    }
+})
 -- awful.spawn.single_instance("spotify")
 -- ============================================================================
 --[[
