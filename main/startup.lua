@@ -10,18 +10,21 @@ awful.spawn.with_shell("sh -c 'pgrep picom > /dev/null && pkill picom || picom -
 ---]]
 
 ---[[ Startup rules
--- awful.spawn.single_instance("spotify")
--- Select tag by object reference:
+local last_tag_id = 0
+local l = awful.layout.suit  -- Just to save some typing: use an alias.
 ruled.client.append_rule {
     rule_any    = {
         class = {'Firefox'}
     },
     properties = {
-        tag = screen[1].tags[2],
+        screen = 1,
+        new_tag = {
+            name = string.format("%d", last_tag_id),
+            layout = l.tile.left,
+        },
     },
 }
 
-local l = awful.layout.suit  -- Just to save some typing: use an alias.
 -- Select tag by name:
 ruled.client.append_rule {
     rule_any    = {
