@@ -150,15 +150,33 @@ require("bindings.client-keys")
 -- ============================================================================
 require("main.client")
 -- ============================================================================
+local ruled = require("ruled")
 ---[[ Startup apps
 awful.spawn.with_shell("sh -c 'pgrep picom > /dev/null && pkill picom || picom --experimental-backends --config ~/.config/picom/picom.conf &'")
-awful.spawn("spotify", {
-    new_tag = {
-        name = "music",
-        layout = awful.layout.suit.max,
-    }
-})
 -- awful.spawn.single_instance("spotify")
+-- Select tag by object reference:
+ruled.client.append_rule {
+    rule_any    = {
+        class = {'Firefox'}
+    },
+    properties = {
+        tag = screen[1].tags[2],
+    },
+}
+
+-- Select tag by name:
+ruled.client.append_rule {
+    rule_any    = {
+        class = {'Thunderbird'}
+    },
+    properties = {
+        tag = screen[1].tags[3],
+    },
+}
+
+-- Spawn firefox and thunderbird
+awful.spawn('firefox')
+awful.spawn('thunderbird')
 -- ============================================================================
 --[[
   _______ _____  ___  ________   
