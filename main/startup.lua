@@ -21,13 +21,18 @@ ruled.client.append_rule {
     },
 }
 
+local l = awful.layout.suit  -- Just to save some typing: use an alias.
 -- Select tag by name:
 ruled.client.append_rule {
     rule_any    = {
         class = {'Thunderbird'}
     },
     properties = {
-        tag = screen[1].tags[3],
+        screen = 1,
+        new_tag = {
+            name = "",
+            layout = l.max,
+        },
     },
 }
 ---]]
