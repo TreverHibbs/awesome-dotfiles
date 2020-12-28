@@ -87,28 +87,28 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     -- screen index 1 is main monitor
-    local l = awful.layout.suit  -- Just to save some typing: use an alias.
-    local layouts = { l.tile, l.tile, l.max, l.max, l.tile,
-                      l.tile, l.tile, l.tile, l.tile }
-    layouts[1] = l.tile
-    layouts[2] = l.tile
-    layouts[3] = l.max
-    layouts[4] = l.tile
-    layouts[5] = l.tile
-    layouts[6] = l.max
-    local names = { "1", "2", "3", "4", "5", "6" }
+    --local l = awful.layout.suit  -- Just to save some typing: use an alias.
+    --local layouts = { l.tile, l.tile, l.max, l.max, l.tile,
+    --                  l.tile, l.tile, l.tile, l.tile }
+    --layouts[1] = l.tile
+    --layouts[2] = l.tile
+    --layouts[3] = l.max
+    --layouts[4] = l.tile
+    --layouts[5] = l.tile
+    --layouts[6] = l.max
+    --local names = { "1", "2", "3", "4", "5", "6" }
 
-    if s.index ~= 1 then
-        layouts = { l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.tile.left,
-                    l.tile.left, l.tile.left, l.tile.left, l.tile.left }
-        layouts[1] = l.tile
-        layouts[2] = l.tile
-        layouts[3] = l.max
-        layouts[4] = l.tile
-        layouts[5] = l.tile
-        layouts[6] = l.max
-    end
-    awful.tag(names, s, layouts)
+    --if s.index ~= 1 then
+    --    layouts = { l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.tile.left,
+    --                l.tile.left, l.tile.left, l.tile.left, l.tile.left }
+    --    layouts[1] = l.tile
+    --    layouts[2] = l.tile
+    --    layouts[3] = l.max
+    --    layouts[4] = l.tile
+    --    layouts[5] = l.tile
+    --    layouts[6] = l.max
+    --end
+    --awful.tag(names, s, layouts)
 -- ============================================================================
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()

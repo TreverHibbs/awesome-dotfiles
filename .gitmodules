@@ -1,3 +1,6 @@
 [submodule "tyrannical"]
 	path = tyrannical
 	url = https://github.com/Elv13/tyrannical.git
+[submodule "/home/treverhibbs/.config/awesome/awesome-wm-widgets"]
+	path = /home/treverhibbs/.config/awesome/awesome-wm-widgets
+	url = https://github.com/streetturtle/awesome-wm-widgets.git

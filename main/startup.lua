@@ -1,5 +1,6 @@
 local ruled = require("ruled")
 local awful = require("awful")
+local tyrannical = require("tyrannical")
 
 
 
@@ -16,90 +17,73 @@ function increment (id)
 end
 ---]]
 
----[[ Startup rules
-local last_tag_id = 1
---local l = awful.layout.suit  -- Just to save some typing: use an alias.
---ruled.client.append_rule {
---    rule_any    = {
---        class = {'Firefox'}
---    },
---    properties = {
---        tag = screen[1].tags[2],
-----        new_tag = {
-----            name = string.format("%d", last_tag_id),
-----            layout = l.tile.left,
-----        },
---    },
---}
---last_tag_id = last_tag_id + 1
---
----- Select tag by name:
---ruled.client.append_rule {
---    rule_any    = {
---        class = { 'Thunderbird', 'discord', 'Slack' }
---    },
---    properties = {
---        tag = screen[1].tags[3],
---    },
---}
---last_tag_id = last_tag_id + 1
---
----- Select tag by name:
---ruled.client.append_rule {
---    rule_any    = {
---        class = { 'Spotify' }
---    },
---    properties = {
---        tag = screen[1].tags[6],
---    },
---}
---last_tag_id = last_tag_id + 1
---
----- Select tag by name:
---ruled.client.append_rule {
---    rule_any    = {
---        class = { 'Anki' }
---    },
---    properties = {
---        tag = screen[1].tags[5],
---    },
---}
---last_tag_id = last_tag_id + 1
---
----- Select tag by name:
---ruled.client.append_rule {
---    rule_any    = {
---        class = { 'URxvt' }
---    },
---    properties = {
---        tag = screen[1].tags[4],
---    },
---}
---last_tag_id = last_tag_id + 1
----]]
+---[[ tyrannical tags
+tyrannical.tags = {
+    {
+        name        = "Term",                 -- Call the tag "Term"
+        init        = true,                   -- Load the tag on startup
+        exclusive   = false,                   -- Refuse any other type of clients (by classes)
+        screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
+        layout      = awful.layout.suit.tile, -- Use the tile layout
+        instance    = {"dev", "ops"},         -- Accept the following instances. This takes precedence over 'class'
+    } ,
+    {
+        name        = "Internet",
+        init        = true,
+        exclusive   = false,
+      --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
+        screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
+        layout      = awful.layout.suit.tile,      -- Use the max layout
+    } ,
+    {
+        name        = "Files",
+        init        = true,
+        exclusive   = false,
+        screen      = {1,2},
+        layout      = awful.layout.suit.tile,
+        exec_once   = {"thunar"}, --When the tag is accessed for the first time, execute this command
+    } ,
+    {
+        name        = "",
+        init        = true,
+        exclusive   = false,
+        screen      = {1,2},
+        layout      = awful.layout.suit.max,
+        class ={
+            "Spotify" }
+    } ,
+    {
+        name        = "",
+        init        = true, 
+        exclusive   = false,
+        layout      = awful.layout.suit.tile,
+    } ,
+}
 
----[[ Startup Spawn
-awful.spawn.single_instance('firefox', {
-    tag = screen[1].tags[2],
-})
---awful.spawn.single_instance('thunderbird')
---awful.spawn.single_instance('slack')
---awful.spawn.single_instance('discord')
---awful.spawn.single_instance('urxvt')
-awful.spawn.single_instance('anki', {
-    tag = screen[1].tags[5],
-})
---awful.spawn.single_instance('spotify')
----]]
+-- Ignore the tag "exclusive" property for the following clients (matched by classes)
+tyrannical.properties.intrusive = {
+    "ksnapshot"     , "pinentry"       , "gtksu"     , "kcalc"        , "xcalc"               ,
+    "feh"           , "Gradient editor", "About KDE" , "Paste Special", "Background color"    ,
+    "kcolorchooser" , "plasmoidviewer" , "Xephyr"    , "kruler"       , "plasmaengineexplorer",
+}
 
+-- Ignore the tiled layout for the matching clients
+tyrannical.properties.floating = {
+    "MPlayer"      , "pinentry"        , "ksnapshot"  , "pinentry"     , "gtksu"          ,
+    "xine"         , "feh"             , "kmix"       , "kcalc"        , "xcalc"          ,
+    "yakuake"      , "Select Color$"   , "kruler"     , "kcolorchooser", "Paste Special"  ,
+    "New Form"     , "Insert Picture"  , "kcharselect", "mythfrontend" , "plasmoidviewer"
+}
 
----[[ Clear all tag rules
---ruled.client.append_rule {
---    rule_any    = {
---        class = { 'Thunderbird', 'discord', 'Slack', 'Spotify', 'Firefox', 'Anki', 'URxvt' }
---    },
---    properties = {
---        tag = awful.screen.focused().selected_tags,
---    },
---}
----]]
+-- Make the matching clients (by classes) on top of the default layout
+tyrannical.properties.ontop = {
+    "Xephyr"       , "ksnapshot"       , "kruler"
+}
+
+-- Force the matching clients (by classes) to be centered on the screen on init
+tyrannical.properties.placement = {
+    kcalc = awful.placement.centered
+}
+
+tyrannical.settings.block_children_focus_stealing = true --Block popups ()
+tyrannical.settings.group_children = true --Force popups/dialogs to have the same tags as the parent client
