@@ -20,7 +20,16 @@ end
 ---[[ tyrannical tags
 tyrannical.tags = {
     {
-        name        = "Term",                 -- Call the tag "Term"
+        --home
+        name        = "",
+        init        = true, 
+        exclusive   = false,
+        screen      = {1,2},
+        layout      = awful.layout.suit.tile,
+    } ,
+    {
+        --terminal
+        name        = "",                 -- Call the tag "Term"
         init        = true,                   -- Load the tag on startup
         exclusive   = false,                   -- Refuse any other type of clients (by classes)
         screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
@@ -28,7 +37,8 @@ tyrannical.tags = {
         instance    = {"dev", "ops"},         -- Accept the following instances. This takes precedence over 'class'
     } ,
     {
-        name        = "Internet",
+        --internet
+        name        = "",
         init        = true,
         exclusive   = false,
       --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
@@ -36,27 +46,28 @@ tyrannical.tags = {
         layout      = awful.layout.suit.tile,      -- Use the max layout
     } ,
     {
-        name        = "Files",
+        --messageing
+        name        = "",
         init        = true,
         exclusive   = false,
-        screen      = {1,2},
-        layout      = awful.layout.suit.tile,
-        exec_once   = {"thunar"}, --When the tag is accessed for the first time, execute this command
+        screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
+        layout      = awful.layout.suit.tile,      -- Use the max layout
     } ,
     {
+        --anki
+        name        = "",
+        init        = true,
+        exclusive   = false,
+        screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
+        layout      = awful.layout.suit.tile,      -- Use the max layout
+    } ,
+    {
+        --music
         name        = "",
         init        = true,
         exclusive   = false,
         screen      = {1,2},
         layout      = awful.layout.suit.max,
-        class ={
-            "Spotify" }
-    } ,
-    {
-        name        = "",
-        init        = true, 
-        exclusive   = false,
-        layout      = awful.layout.suit.tile,
     } ,
 }
 

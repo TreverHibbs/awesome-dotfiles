@@ -87,6 +87,12 @@ theme.hotkeys_modifiers_fg = colors["color6"]
 theme.hotkeys_border_color = colors["color4"]
 theme.hotkeys_shape = gears.shape.rounded_rect
 -- ============================================================================
+-- prompt theme
+theme.prompt_bg = colors["background"]
+theme.prompt_bg_cursor = colors["foreground"]
+theme.prompt_fg = colors["foreground"]
+theme.prompt_fg_cursor = colors["foreground"]
+-- ============================================================================
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:

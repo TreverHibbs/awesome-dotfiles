@@ -138,7 +138,7 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 -- ============================================================================
     -- custom run shell
-    awful.key({modkey}, "r", function () run_shell.launch() end)
+    awful.key({modkey}, "d", function () run_shell.launch() end)
 -- ============================================================================
     -- Tyrannical Prompt
 --    awful.key({ modkey }, "d",
