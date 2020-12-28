@@ -20,6 +20,7 @@ local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local run_shell = require("awesome-wm-widgets.run-shell.run-shell")
+local tyrannical = require("tyrannical")
 
 
 -- ============================================================================
@@ -199,6 +200,11 @@ for i = 1, 9 do
                         local tag = screen.tags[i]
                         if tag then
                            tag:view_only()
+                        else -- create new tag on currently focused screen if it does not extst
+                            awful.tag.add(i .. "", {
+                                screen = awful.screen.focused(),
+                                layout = awful.layout.suit.tile }
+                            ):view_only()
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),

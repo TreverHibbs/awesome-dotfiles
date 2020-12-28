@@ -21,7 +21,7 @@ end
 tyrannical.tags = {
     {
         --home
-        name        = "",
+        name        = "1",
         init        = true, 
         exclusive   = false,
         screen      = {1,2},
@@ -29,50 +29,48 @@ tyrannical.tags = {
     } ,
     {
         --terminal
-        name        = "",                 -- Call the tag "Term"
+        name        = "2",                 -- Call the tag "Term"
         init        = true,                   -- Load the tag on startup
         exclusive   = false,                   -- Refuse any other type of clients (by classes)
-        screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
+        screen      = 1,                  
         layout      = awful.layout.suit.tile, -- Use the tile layout
         instance    = {"dev", "ops"},         -- Accept the following instances. This takes precedence over 'class'
-        exec_once   = {"URxvt"}, --When the tag is accessed for the first time, execute this command
+        exec_once   = {"urxvt"}, --When the tag is accessed for the first time, execute this command
     } ,
     {
         --internet
-        name        = "",
+        name        = "3",
         init        = true,
         exclusive   = false,
       --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
-        screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
+        screen      = 1,                 
         layout      = awful.layout.suit.tile,      -- Use the max layout
         exec_once   = {"firefox"},
     } ,
     {
         --messageing
-        name        = "",
+        name        = "4",
         init        = true,
         exclusive   = false,
-        screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
+        screen      = 1,            
         layout      = awful.layout.suit.max,      -- Use the max layout
-        exec_once   = {"discord", "slack", "thunderbird"},
+        exec_once   = {"slack", "thunderbird"},
     } ,
     {
         --anki
-        name        = "",
+        name        = "5",
         init        = true,
         exclusive   = false,
-        screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
+        screen      = 1,                  -- Create this tag on screen 1 and screen 2
         layout      = awful.layout.suit.tile,      -- Use the max layout
-        exec_once   = {"anki"},
     } ,
     {
         --music
-        name        = "",
+        name        = "6",
         init        = true,
         exclusive   = false,
-        screen      = {1,2},
+        screen      = 1,
         layout      = awful.layout.suit.max,
-        exec_once   = {"spotify"},
     } ,
 }
 
@@ -103,7 +101,6 @@ tyrannical.properties.placement = {
 
 tyrannical.settings.block_children_focus_stealing = true --Block popups ()
 tyrannical.settings.group_children = true --Force popups/dialogs to have the same tags as the parent client
-tyrannical.settings.no_fucus_stealing_out = true 
 
 
 
