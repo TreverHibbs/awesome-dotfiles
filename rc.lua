@@ -14,6 +14,7 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+local rules = require("awful.rules")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
@@ -29,6 +30,15 @@ require("awful.hotkeys_popup.keys")
 -- Load Debian menu entries
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
+-- ===================================================================
+client.connect_signal("manage", function (c)
+  if c.class == nil then c.minimized = true
+    c:connect_signal("property::class", function ()
+      c.minimized = false
+      awful.rules.apply(c)
+    end)
+  end
+end)
 -- ===================================================================
 -- User variables and preferences
 user = {

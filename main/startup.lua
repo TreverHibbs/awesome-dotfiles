@@ -35,6 +35,7 @@ tyrannical.tags = {
         screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
         layout      = awful.layout.suit.tile, -- Use the tile layout
         instance    = {"dev", "ops"},         -- Accept the following instances. This takes precedence over 'class'
+        exec_once   = {"URxvt"}, --When the tag is accessed for the first time, execute this command
     } ,
     {
         --internet
@@ -44,6 +45,7 @@ tyrannical.tags = {
       --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
         screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
         layout      = awful.layout.suit.tile,      -- Use the max layout
+        exec_once   = {"firefox"},
     } ,
     {
         --messageing
@@ -51,7 +53,8 @@ tyrannical.tags = {
         init        = true,
         exclusive   = false,
         screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
-        layout      = awful.layout.suit.tile,      -- Use the max layout
+        layout      = awful.layout.suit.max,      -- Use the max layout
+        exec_once   = {"discord", "slack", "thunderbird"},
     } ,
     {
         --anki
@@ -60,6 +63,7 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
         layout      = awful.layout.suit.tile,      -- Use the max layout
+        exec_once   = {"anki"},
     } ,
     {
         --music
@@ -68,6 +72,7 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = {1,2},
         layout      = awful.layout.suit.max,
+        exec_once   = {"spotify"},
     } ,
 }
 
@@ -98,3 +103,17 @@ tyrannical.properties.placement = {
 
 tyrannical.settings.block_children_focus_stealing = true --Block popups ()
 tyrannical.settings.group_children = true --Force popups/dialogs to have the same tags as the parent client
+tyrannical.settings.no_fucus_stealing_out = true 
+
+
+
+-- ============================================================================
+-- startup applications
+--awful.spawn.single_instance("spotify", { tag = "", switch_to_tags = false, no_autofocus = true } )
+--awful.spawn.single_instance("discord", { tag = "", switch_to_tags = false, no_autofocus = true} )
+--awful.spawn.single_instance("thunderbird", { tag = "", switch_to_tags = false, no_autofocus = true } )
+--awful.spawn.single_instance("slack", { tag = "", switch_to_tags = false, no_autofocus = true } )
+--awful.spawn.single_instance("firefox", { tag = "", switch_to_tags = false, no_autofocus = true } )
+--awful.spawn.single_instance("anki", { tag = "", switch_to_tags = false, no_autofocus = true } )
+--awful.spawn.single_instance("URxvt", { tag = "", switch_to_tags = false, no_autofocus = true } )
+
