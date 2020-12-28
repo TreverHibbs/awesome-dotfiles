@@ -19,6 +19,8 @@
 local gears = require("gears")                                                                                                         
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local run_shell = require("awesome-wm-widgets.run-shell.run-shell")
+local tyrannical = require("tyrannical")
 
 
 -- ============================================================================
@@ -136,26 +138,55 @@ globalkeys = gears.table.join(
               end,
               {description = "restore minimized", group = "client"}),
 -- ============================================================================
+    -- custom run shell
+    awful.key({modkey}, "d", function () run_shell.launch() end)
+-- ============================================================================
+    -- Tyrannical Prompt
+--    awful.key({ modkey }, "d",
+--        function ()
+--            awful.prompt.run({ prompt = "Run: ", hooks = {
+--                {{         },"Return",function(command)
+--                    local result = awful.spawn(command)
+--                    mypromptbox[mouse.screen].widget:set_text(type(result) == "string" and result or "")
+--                    return true
+--                end},
+--                {{"Mod1"   },"Return",function(command)
+--                    local result = awful.spawn(command,{intrusive=true})
+--                    mypromptbox[mouse.screen].widget:set_text(type(result) == "string" and result or "")
+--                    return true
+--                end},
+--                {{"Shift"  },"Return",function(command)
+--                    local result = awful.spawn(command,{intrusive=true,ontop=true,floating=true})
+--                    mypromptbox[mouse.screen].widget:set_text(type(result) == "string" and result or "")
+--                    return true
+--                end}
+--            }},
+--            mypromptbox[mouse.screen].widget,nil,
+--            awful.completion.shell,
+--            awful.util.getdir("cache") .. "/history")
+--        end)
+-- ============================================================================
     -- Prompt
-    awful.key({ modkey },            "d",     function () 
-    awful.util.spawn("rofi -show run") end,
-                    {description = "run the dmenu prompt", group = "awesome"}),
-
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"}),
+--    awful.key({ modkey },            "d",     function () 
+--    awful.util.spawn("rofi -show run") end,
+--                    {description = "run the dmenu prompt", group = "awesome"}),
+--
+--    awful.key({ modkey }, "x",
+--              function ()
+--                  awful.prompt.run {
+--                    prompt       = "Run Lua code: ",
+--                    textbox      = awful.screen.focused().mypromptbox.widget,
+--                    exe_callback = awful.util.eval,
+--                    history_path = awful.util.get_cache_dir() .. "/history_eval"
+--                  }
+--              end,
+--              {description = "lua execute prompt", group = "awesome"}),
 -- ============================================================================
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
-)
+--    awful.key({ modkey }, "p", function() menubar.show() end,
+--              {description = "show the menubar", group = "launcher"})
+-- ============================================================================
+) -- end global keys
 -- ============================================================================
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
@@ -169,6 +200,11 @@ for i = 1, 9 do
                         local tag = screen.tags[i]
                         if tag then
                            tag:view_only()
+                        else -- create new tag on currently focused screen if it does not extst
+                            awful.tag.add(i .. "", {
+                                screen = awful.screen.focused(),
+                                layout = awful.layout.suit.tile }
+                            ):view_only()
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
