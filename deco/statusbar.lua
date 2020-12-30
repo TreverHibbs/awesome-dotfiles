@@ -146,7 +146,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ 
                        visible = true,
-                       type = "normal",
+                       type = "dock",
+                       position = "top",
                        height = 35,
                        width = beautiful.wibar_width,
                        screen = s,

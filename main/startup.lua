@@ -25,6 +25,7 @@ tyrannical.tags = {
         init        = true, 
         exclusive   = false,
         screen      = {1,2},
+        selected    = true,
         layout      = awful.layout.suit.tile,
     } ,
     {
@@ -71,6 +72,7 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = 1,
         layout      = awful.layout.suit.max,
+        exec_once   = {"run_spotify"},
     } ,
 }
 
