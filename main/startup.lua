@@ -7,7 +7,7 @@ local tyrannical = require("tyrannical")
 
 
 ---[[ Startup daemons
-awful.spawn.with_shell("sh -c 'pgrep picom > /dev/null && pkill picom || picom --experimental-backends --config ~/.config/picom/picom.conf &'")
+awful.spawn.with_shell("sh -c 'pgrep picom > /dev/null && echo || picom --experimental-backends --config ~/.config/picom/picom.conf &'")
 ---]]
 
 ---[[ Increment functions
@@ -55,6 +55,10 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = 1,            
         layout      = awful.layout.suit.max,      -- Use the max layout
+        -- run_app.bin commands are bash scripts that run a application if it
+        -- is not already running. This is needed for elctron apps which do
+        -- not set the WM class properly and therefore do not work well with
+        -- exec_once
         exec_once   = {"run_slack.bin", "thunderbird", "run_discord.bin"},
     } ,
     {
