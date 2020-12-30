@@ -1,0 +1,2 @@
+#!/bin/bash
+pgrep -x slack >/dev/null && echo "Process found" || slack

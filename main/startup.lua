@@ -55,7 +55,7 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = 1,            
         layout      = awful.layout.suit.max,      -- Use the max layout
-        exec_once   = {"slack", "thunderbird"},
+        exec_once   = {"run_slack.bin", "thunderbird", "run_discord.bin"},
     } ,
     {
         --anki
@@ -64,6 +64,7 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = 1,                  -- Create this tag on screen 1 and screen 2
         layout      = awful.layout.suit.tile,      -- Use the max layout
+        exec_once   = {"run_anki.bin"},
     } ,
     {
         --music
