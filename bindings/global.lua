@@ -20,8 +20,6 @@ local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local run_shell = require("awesome-wm-widgets.run-shell.run-shell")
-local run_shell_2 = require("awesome-wm-widgets.run-shell-2.run-shell-2")
-local run_shell_3 = require("awesome-wm-widgets.run-shell-3.run-shell")
 local tyrannical = require("tyrannical")
 
 
