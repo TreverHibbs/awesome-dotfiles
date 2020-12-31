@@ -201,9 +201,17 @@ for i = 1, 9 do
                         if tag then
                            tag:view_only()
                         else -- create new tag on currently focused screen if it does not extst
+                            local focused_screen = awful.screen.focused()
+                            local screen_specific_layout
+                            -- print("screen index" .. focused_screen.index)
+                            if (focused_screen.index == 1) then
+                                screen_specific_layout = awful.layout.suit.tile  
+                            else
+                                screen_specific_layout = awful.layout.suit.tile.left  
+                            end
                             awful.tag.add(i .. "", {
-                                screen = awful.screen.focused(),
-                                layout = awful.layout.suit.tile }
+                                screen = focused_screen,
+                                layout = screen_specific_layout }
                             ):view_only()
                         end
                   end,
