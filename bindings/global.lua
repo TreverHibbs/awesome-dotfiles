@@ -20,6 +20,7 @@ local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local run_shell = require("awesome-wm-widgets.run-shell.run-shell")
+local logout = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
 local tyrannical = require("tyrannical")
 
 
@@ -139,7 +140,11 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 -- ============================================================================
     -- custom run shell
-    awful.key({modkey}, "d", function () run_shell.launch() end)
+    awful.key({modkey}, "d", function () run_shell.launch() end,{description = "launch run shell", group = "awesome"}),
+        
+-- ============================================================================
+    -- custom logout menu
+    awful.key({ modkey }, "l", function() logout.launch() end, {description = "Show logout screen", group = "custom"})
 -- ============================================================================
     -- Tyrannical Prompt
 --    awful.key({ modkey }, "d",

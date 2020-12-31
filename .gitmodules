@@ -4,3 +4,6 @@
 [submodule "/home/treverhibbs/.config/awesome/awesome-wm-widgets"]
 	path = /home/treverhibbs/.config/awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets.git
+[submodule "awesome-buttons"]
+	path = awesome-buttons
+	url = https://github.com/streetturtle/awesome-buttons
