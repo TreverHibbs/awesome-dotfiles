@@ -24,9 +24,18 @@ tyrannical.tags = {
         name        = "1",
         init        = true, 
         exclusive   = false,
-        screen      = {1,2},
+        screen      = {1},
         selected    = true,
         layout      = awful.layout.suit.tile,
+    } ,
+    {
+        --home left screen
+        name        = "1",
+        init        = true, 
+        exclusive   = false,
+        screen      = {2},
+        selected    = true,
+        layout      = awful.layout.suit.tile.left,
     } ,
     {
         --terminal
