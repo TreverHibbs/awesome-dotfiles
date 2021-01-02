@@ -22,6 +22,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local run_shell = require("awesome-wm-widgets.run-shell.run-shell")
 local logout = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
 local tyrannical = require("tyrannical")
+local apps = require("apps")
 
 
 -- ============================================================================
@@ -144,7 +145,19 @@ globalkeys = gears.table.join(
         
 -- ============================================================================
     -- custom logout menu
-    awful.key({ modkey }, "l", function() logout.launch() end, {description = "Show logout screen", group = "custom"})
+    awful.key({ modkey }, "p", function() logout.launch() end, {description = "Show logout screen", group = "custom"}),
+-- ============================================================================
+    -- Screenshots
+    awful.key( { }, "Print", function() apps.screenshot("full") end,
+        {description = "take full screenshot", group = "screenshots"}),
+    awful.key( { modkey, "Shift" }, "c", function() apps.screenshot("selection") end,
+        {description = "select area to capture", group = "screenshots"}),
+    awful.key( { modkey, "Ctrl" }, "c", function() apps.screenshot("clipboard") end,
+        {description = "select area to copy to clipboard", group = "screenshots"}),
+    awful.key( { modkey }, "Print", function() apps.screenshot("browse") end,
+        {description = "browse screenshots", group = "screenshots"}),
+    awful.key( { modkey, "Shift" }, "Print", function() apps.screenshot("gimp") end,
+        {description = "edit most recent screenshot with gimp", group = "screenshots"})
 -- ============================================================================
     -- Tyrannical Prompt
 --    awful.key({ modkey }, "d",
