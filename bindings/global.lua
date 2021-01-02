@@ -109,7 +109,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
     awful.key({ modkey,  }, "b", function () awful.spawn("firefox") end,
-              {description="start firefox", group="trever"}),
+              {description="start firefox", group="launcher"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -145,7 +145,7 @@ globalkeys = gears.table.join(
         
 -- ============================================================================
     -- custom logout menu
-    awful.key({ modkey }, "p", function() logout.launch() end, {description = "Show logout screen", group = "custom"}),
+    awful.key({ modkey }, "p", function() logout.launch() end, {description = "Show logout screen", group = "awesome"}),
 -- ============================================================================
     -- Screenshots
     awful.key( { }, "Print", function() apps.screenshot("full") end,
